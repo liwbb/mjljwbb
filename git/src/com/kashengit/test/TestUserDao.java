@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 public class TestUserDao {
     Logger logger= LoggerFactory.getLogger(TestUserDao.class);
     @Test
@@ -53,6 +55,12 @@ public class TestUserDao {
         User user=userDAO.QueryByID(2);
         Logger logger=LoggerFactory.getLogger(TestUserDao.class);
         logger.info("{}",user);
+    }
+    @Test
+    public void testFindAll() {
+        UserDAO userDAO=new UserDAO();
+        List<User> list=userDAO.QueryAll();
+        Assert.assertEquals(list.size(),5);
     }
 
 }
