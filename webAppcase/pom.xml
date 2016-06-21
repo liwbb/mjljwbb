@@ -2,11 +2,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.mjljwbb</groupId>
-  <artifactId>webApp</artifactId>
+  <artifactId>mywebapp</artifactId>
   <packaging>war</packaging>
   <version>2.0-SNAPSHOT</version>
-  <name>webApp Maven Webapp</name>
+
+
+
+  <name>mywebapp Maven Webapp</name>
   <url>http://maven.apache.org</url>
+
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -14,29 +19,6 @@
       <version>4.12</version>
 
     </dependency>
-
-    <!-- http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
-      <version>3.1.0</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <!-- http://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-    <dependency>
-      <groupId>mysql</groupId>
-      <artifactId>mysql-connector-java</artifactId>
-      <version>5.1.37</version>
-    </dependency>
-
-    <!-- http://mvnrepository.com/artifact/javax.servlet/jstl -->
-    <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>jstl</artifactId>
-      <version>1.2</version>
-    </dependency>
-
     <!-- http://mvnrepository.com/artifact/commons-codec/commons-codec -->
     <dependency>
       <groupId>commons-codec</groupId>
@@ -55,20 +37,19 @@
       <artifactId>commons-dbutils</artifactId>
       <version>1.6</version>
     </dependency>
-
-    <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-      <version>3.3.2</version>
-    </dependency>
-
     <!-- http://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
     <dependency>
       <groupId>commons-fileupload</groupId>
       <artifactId>commons-fileupload</artifactId>
       <version>1.3.2</version>
     </dependency>
+    <!-- http://mvnrepository.com/artifact/com.github.livesense/org.liveSense.jdbc.mysql -->
+    <dependency>
+      <groupId>com.github.livesense</groupId>
+      <artifactId>org.liveSense.jdbc.mysql</artifactId>
+      <version>1.0.5</version>
+    </dependency>
+
 
     <!-- http://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
     <dependency>
@@ -94,6 +75,13 @@
       <artifactId>hamcrest-core</artifactId>
       <version>1.3</version>
     </dependency>
+    <!-- http://mvnrepository.com/artifact/jstl/jstl -->
+    <dependency>
+      <groupId>jstl</groupId>
+      <artifactId>jstl</artifactId>
+      <version>1.2</version>
+    </dependency>
+
     <!-- http://mvnrepository.com/artifact/joda-time/joda-time -->
     <dependency>
       <groupId>joda-time</groupId>
@@ -125,7 +113,13 @@
       <version>0.0.1</version>
     </dependency>
     <!-- http://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>javax.servlet-api</artifactId>
+      <version>3.1.0</version>
+      <scope>provided</scope>
 
+    </dependency>
     <!-- http://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -152,22 +146,14 @@
     </dependency>
 
 
-
   </dependencies>
+
+
+
+
   <build>
-    <finalName>webApp</finalName>
-
+    <finalName>mywebapp</finalName>
     <plugins>
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <port>80</port>
-          <path>/</path>
-        </configuration>
-      </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -179,10 +165,16 @@
         </configuration>
       </plugin>
 
-
-
+      <plugin>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <port>80</port>
+          <path>/</path>
+        </configuration>
+      </plugin>
     </plugins>
-
 
   </build>
 </project>
