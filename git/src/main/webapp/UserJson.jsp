@@ -22,7 +22,7 @@
 </form>
 <br>
 <button id="xmlBtn">get XML data</button>
-  
+
 <div id="userBox">
 
 </div>

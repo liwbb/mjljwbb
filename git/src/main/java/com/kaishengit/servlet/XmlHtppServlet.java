@@ -25,6 +25,12 @@ public class XmlHtppServlet extends HttpServlet {
 //        resp.addHeader("cache-control","no-cache");
 //        resp.addHeader("expires","0");
         //服务器端处理缓存
+
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         String token= UUID.randomUUID().toString();
         HttpSession session=req.getSession();
         session.setAttribute("token",token);
@@ -56,9 +62,9 @@ public class XmlHtppServlet extends HttpServlet {
 
         PrintWriter pw=resp.getWriter();
         if(user!=null){
-            pw.print("no");
+            pw.print("false");
         }else{
-            pw.print("yes");
+            pw.print("true");
         }
         pw.flush();
         pw.close();

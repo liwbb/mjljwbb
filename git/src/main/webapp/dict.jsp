@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>dict</title>
-    <link rel="stylesheet" href="/static/js/bootstrap.min.js">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container">
