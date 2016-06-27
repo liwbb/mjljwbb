@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaishengit.mapper.UserMapper">
+    <select id="findByID" parameterType="int" resultType="com.kaishengit.pojo.User">
+        select id,code,title,author,publishing,total,count from book where id = #{id}
+    </select>
+    <select id="save" parameterType="com.kaishengit.pojo.User">
+        INSERT INTO book( code, title, author, publishing, total, count) VALUES ( #{code},#{title},#{author},#{publishing},#{total},#{count})
+    </select>
+    <select id="update" parameterType="com.kaishengit.pojo.User">
+        update book set code=#{code},title=#{title},author=#{author},publishing=#{publishing},total=#{total},count=#{count} WHERE id=#{id}
+    </select>
+    <select id="delete" parameterType="int">
+        DELETE FROM book WHERE id=#{id}
+    </select>
+    <select id="findAll" resultType="com.kaishengit.pojo.User">
+        SELECT id,code,title,author,publishing,total,count from book
+    </select>
+</mapper>
