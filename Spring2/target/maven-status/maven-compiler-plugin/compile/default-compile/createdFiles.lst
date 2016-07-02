@@ -1,0 +1,6 @@
+com\kaishengit\pojo\Admin.class
+com\kaishengit\Mapper\AdminDao.class
+com\kaishengit\exception\EmailUtil.class
+com\kaishengit\service\AdminDaoService.class
+com\kaishengit\exception\ServiceException.class
+com\kaishengit\pojo\User.class

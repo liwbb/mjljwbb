@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kaishengit.Mapper.AdminDao">
+    <cache/>
+    <insert id="save" parameterType="Admin">
+        INSERT INTO admin(name,password) VALUES (#{name},#{password})
+    </insert>
+    <select id="findOne" parameterType="int" resultType="Admin">
+        SELECT * from admin where id=#{id}
+    </select>
+    <select id="findByName" parameterType="String" resultType="Admin">
+        SELECT * from admin where name=#{name}
+    </select>
+</mapper>
