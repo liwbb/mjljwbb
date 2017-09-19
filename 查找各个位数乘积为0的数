@@ -1,0 +1,250 @@
+import java.util.Date;
+
+public class TestAllNum {
+    private final static int One_NUM = 1;
+    private final static int TWO_NUM = 2;
+    private final static int THREE_NUM = 3;
+    private final static int FOUR_NUM = 4;
+    private final static int FRI_NUM = 5;
+    private final static int SIX_NUM = 6;
+    private final static int SEV_NUM = 7;
+    private final static int EIG_NUM = 8;
+    private final static int NIN_NUM = 9;
+    private final static int G_NUM = 0;
+    private final static int S_NUM = 10;
+    private final static int B_NUM = 100;
+    private final static int Q_NUM = 1000;
+    private final static int W_NUM = 10000;
+    private final static int SW_NUM = 100000;
+    private final static int BW_NUM = 1000000;
+    private final static int QW_NUM = 10000000;
+    private final static int YW_NUM = 100000000;
+    private final static int SYW_NUM = 1000000000;
+
+    public static void main(String[] args) {
+
+        int num = 100000000;
+        System.out.println("===================查询所有转String剪切各个位数=========================");
+        getAllNum(num);
+        System.out.println("=====================查询所有end=======================");
+        getNum(num);
+
+    }
+
+    /**
+     * 通过代码一次算出
+     *
+     * @param numAll
+     */
+    private static void getNum(int numAll) {
+        int num = G_NUM;
+        int gNum = G_NUM;
+        int sNum = G_NUM;
+        int bNum = G_NUM;
+        int qNum = G_NUM;
+        int wnum = G_NUM;
+        int swNum = G_NUM;
+        int bwNum = G_NUM;
+        int qwNum = G_NUM;
+        int ywNum = G_NUM;
+        int sywNum = G_NUM;
+        System.out.println("===================查询通过代码一次算出=========================");
+        Long longStart = System.currentTimeMillis();
+        for (int i = 1; i <= numAll; i++) {
+            //获取该数的各个数的乘积值 4代表不为0
+            // 0代表1位数 1代表2位数3代表3位数4代表5位数 5代表一次类推
+            int resusltNum = getEveryTake(i);
+            if (resusltNum != FOUR_NUM) {
+                num++;
+                switch (resusltNum) {
+                    case G_NUM:
+                        gNum++;
+                        break;
+                    case One_NUM:
+                        sNum++;
+                        break;
+                    case TWO_NUM:
+                        bNum++;
+                        break;
+                    case THREE_NUM:
+                        qNum++;
+                        break;
+                    case FRI_NUM:
+                        wnum++;
+                        break;
+                    case SIX_NUM:
+                        swNum++;
+                        break;
+                    case SEV_NUM:
+                        bwNum++;
+                        break;
+                    case EIG_NUM:
+                        qwNum++;
+                        break;
+                    case NIN_NUM:
+                        ywNum++;
+                        break;
+                }
+            }
+
+        }
+        Long endDate = System.currentTimeMillis();
+        System.out.println(num + "花费时间为" + (endDate - longStart));
+        System.out.println("总数 num-->" + num);
+        System.out.println("个位 gNum-->" + gNum);
+        System.out.println("十位 sNum-->" + sNum);
+        System.out.println("百位 bNum-->" + bNum);
+        System.out.println("千位 qNum-->" + qNum);
+        System.out.println("万位 wnum-->" + wnum);
+        System.out.println("十万位 swNum-->" + swNum);
+        System.out.println("百万位 bwNum-->" + bwNum);
+        System.out.println("千万位 qwNum-->" + qwNum);
+        System.out.println("亿万位 ywNum-->" + ywNum);
+        System.out.println("十亿万位 ywNum-->" + sywNum);
+        System.out.println("=====================查询部分end=======================");
+    }
+
+    /**
+     * 回去各个位数的值
+     *
+     * @param i
+     * @return
+     */
+    private static int getEveryTake(int i) {
+        int gNum = i % S_NUM;
+        int sNum = One_NUM;
+        int bNum = One_NUM;
+        int qNum = One_NUM;
+        int wnum = One_NUM;
+        int swNum = One_NUM;
+        int bwNum = One_NUM;
+        int qwNum = One_NUM;
+        int ywNum = One_NUM;
+        int sywNum = One_NUM;
+        int j = 0;
+        if (i / YW_NUM == 0) {
+            if (i / QW_NUM == 0) {
+                if (i / BW_NUM == 0) {
+                    if (i / SW_NUM == 0) {
+                        if (i / W_NUM == 0) {
+                            if (i / Q_NUM == 0) {
+                                if (i / B_NUM == 0) {
+                                    if (i / S_NUM == 0) {
+                                        j = G_NUM;
+                                    } else {
+                                        j = One_NUM;
+                                    }
+                                } else {
+                                    sNum = i / S_NUM % S_NUM;
+                                    j = TWO_NUM;
+                                }
+                            } else {
+                                sNum = i / S_NUM % S_NUM;
+                                bNum = i / B_NUM % S_NUM;
+                                j = THREE_NUM;
+                            }
+                        } else {
+                            sNum = i / S_NUM % S_NUM;
+                            bNum = i / B_NUM % S_NUM;
+                            qNum = i / Q_NUM % S_NUM;
+                            j = FRI_NUM;
+                        }
+                    } else {
+                        sNum = i / S_NUM % S_NUM;
+                        bNum = i / B_NUM % S_NUM;
+                        qNum = i / Q_NUM % S_NUM;
+                        wnum = i / W_NUM % S_NUM;
+                        j = SIX_NUM;
+                    }
+                } else {
+                    sNum = i / S_NUM % S_NUM;
+                    bNum = i / B_NUM % S_NUM;
+                    qNum = i / Q_NUM % S_NUM;
+                    wnum = i / W_NUM % S_NUM;
+                    bwNum = i / SW_NUM % S_NUM;
+                    j = SEV_NUM;
+                }
+            } else {
+                sNum = i / S_NUM % S_NUM;
+                bNum = i / B_NUM % S_NUM;
+                qNum = i / Q_NUM % S_NUM;
+                wnum = i / W_NUM % S_NUM;
+                bwNum = i / SW_NUM % S_NUM;
+                qwNum = i / BW_NUM % S_NUM;
+                j = EIG_NUM;
+            }
+            //获取乘积值
+            return reultGetNum(sywNum, ywNum, qwNum, bwNum, swNum, wnum, qNum, bNum, gNum, sNum, j);
+        } else {
+            return NIN_NUM;
+        }
+    }
+
+    private static int reultGetNum(int sywNum, int ywNum, int qwNum, int bwNum, int swNum, int wnum, int qNum, int bNum, int gNum, int sNum, int i) {
+        String resusltNum = "";
+        //获取乘积值
+        //返回的第一位0代表为0值 1代表不为0值 第二位代表的是该数是几位数
+        resusltNum = getResult(sywNum, ywNum, qwNum, bwNum, swNum, wnum, qNum, bNum, gNum, sNum, i);
+        if ("1".equals(resusltNum.substring(0, 1))) {
+            return FOUR_NUM;
+        } else {
+            return Integer.parseInt(resusltNum.substring(1));
+        }
+    }
+
+    /**
+     * 个人位数的乘积
+     *
+     * @param qNum
+     * @param bNum
+     * @param gNum
+     * @return
+     */
+    private static String getResult(int sywNum, int ywNum, int qwNum, int bwNum, int swNum, int wnum, int qNum, int bNum, int gNum, int sNum, int resultNum) {
+        //各个位数乘积为0
+        if (sywNum * ywNum * qwNum * bwNum * swNum * wnum * qNum * bNum * gNum * sNum == 0) {
+            return "0" + resultNum;
+        } else {
+            return "1" + resultNum;
+        }
+    }
+
+
+    /**
+     * 转String剪切各个位数
+     *
+     * @param num
+     */
+    private static void getAllNum(int num) {
+        int count = 0;
+        Long longStart = System.currentTimeMillis();
+        for (int i = 1; i <= num; i++) {
+            if (getResultNum(String.valueOf(i))) {
+                count++;
+            }
+        }
+        Long endDate = System.currentTimeMillis();
+        System.out.println(num + "以内的数各个位数的乘积为0的个数为" + count);
+        System.out.println(num + "花费时间为" + (endDate - longStart));
+    }
+
+    /**
+     * 获取各个位数的乘积是否为0 true 为0  false 不为0
+     * 转String剪切各个位数
+     *
+     * @param strNum
+     * @return
+     */
+    private static boolean getResultNum(String strNum) {
+        int strLength = strNum.length();
+        int resultNum = 1;
+        for (int i = 0; i < strLength; i++) {
+            resultNum = resultNum * (Integer.parseInt(strNum.substring(i, i + 1)));
+        }
+        if (resultNum == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
