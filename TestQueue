@@ -1,0 +1,57 @@
+package com.thinkgem.jeesite.modules.api_xing.investor.web;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.Arrays;
+
+public class TestBaseTwo {
+    private static Logger logger = LoggerFactory.getLogger(TestBaseTwo.class);
+
+    public static void main(String[] args) {
+        //输出数组
+        int[] a = new int[]{5, 3, 6, 2, 9, 8, 10, 2};
+        logger.info(Arrays.toString(a));
+        //排序（堆）
+        heapSort(a);
+        logger.info(Arrays.toString(a));
+    }
+    private static void heapSort(int[] a) {
+        int i;
+        for (i = a.length / 2 - 1; i >= 0; i--) {// 构建一个大顶堆
+            adjustCheap(a, i, a.length - 1);// 将堆顶记录和当前未经排序子序列的最后一个记录交换
+        }
+        for (i = a.length - 1; i >= 0; i--) {
+            int temp = a[0];
+            a[0] = a[i];
+            a[i] = temp;
+            adjustCheap(a, 0, i - 1);// 将a中前i-1个记录重新调整为大顶堆
+        }
+
+    }
+    /**
+     * 构建大顶堆
+     */
+    private static void adjustCheap(int[] a, int i, int len) {
+        int temp, j;
+        temp = a[i];
+        for (j = i * 2; j < len; j *= 2) {// 沿关键字较大的孩子结点向下筛选
+            if (a[j] < a[j + 1]) ++j;// j为关键字中较大记录的下标
+            if (temp >= a[j]) break;
+            a[i] = a[j];
+            i = j;
+        }
+        a[i] = temp;
+    }
+
+
+}
+
+
+复杂度分析
+
+堆排序的运行时间主要耗费在初始构建堆和在重建堆时反复筛选上。在构建对的过程中，因为我们是完全二叉树从最下层最右边的非终端节点开始构建，将它与其孩子进行比较和若有必要的互换，对每个非终端节点来说，其实最多进行两次比较和互换操作，因此整个构建堆的时间复杂度为O(n)。 
+在正式排序时，第i次取堆顶记录重建堆需要用O(logi)的时间（完全二叉树的某个节点到根节点的距离为这里写图片描述），并且需要取n-1次堆顶记录，因此，重建堆的时间复杂度为O(nlogn)。 
+所以总体来说，堆排序的时间复杂度为O(nlogn)，由于堆排序对原始记录的状态并不敏感，因此它无论是最好、最坏和平均时间复杂度均为O(nlogn)。这在性能上显然要远远好过于冒泡、简单选择、直接插入的时间复杂度了。 
+空间复杂度上，它只有一个用来交换的暂存单元，也非常的不错。不过由于记录的比较与交换是跳跃式进行的，因此堆排序也是一种不稳定的排序方法。 
+另外，由于出事构建堆所需要的比较次数比较多，因此，他并不适合待排序序列个数较少的情况。
