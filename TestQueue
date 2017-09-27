@@ -1,57 +1,80 @@
 package com.thinkgem.jeesite.modules.api_xing.investor.web;
 
+import com.thinkgem.jeesite.common.utils.Base64Utils;
+import com.thinkgem.jeesite.modules.sys.service.SystemService;
+import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class TestBaseTwo {
-    private static Logger logger = LoggerFactory.getLogger(TestBaseTwo.class);
+import static org.apache.commons.lang.CharEncoding.UTF_8;
+import static org.apache.commons.lang.CharEncoding.isSupported;
 
+public class testBase {
+    private static Logger logger= LoggerFactory.getLogger(testBase.class);
     public static void main(String[] args) {
+//        String pwd = "123456789a";
+//        String str = Base64Utils.getCodeBASE64(pwd);
+//        System.out.println(checkLongTime(pwd));
+//        System.out.println(new String(str));
+//        System.out.println(SystemService.entryptPassword(pwd));
+////        String pwdNew="654321";
+////        System.out.println(Base64.decodeBase64(pwdNew));
+////        System.out.println(Base64.encodeBase64("cXdlcjEyMzQ="));
+//        System.out.println(System.currentTimeMillis());
         //输出数组
-        int[] a = new int[]{5, 3, 6, 2, 9, 8, 10, 2};
+        int[] a = new int[]{1,4,2,4,6};
         logger.info(Arrays.toString(a));
         //排序（堆）
         heapSort(a);
         logger.info(Arrays.toString(a));
     }
-    private static void heapSort(int[] a) {
-        int i;
-        for (i = a.length / 2 - 1; i >= 0; i--) {// 构建一个大顶堆
-            adjustCheap(a, i, a.length - 1);// 将堆顶记录和当前未经排序子序列的最后一个记录交换
+    public static void swap(int[] data, int i, int j) {
+        if (i == j) {
+            return;
         }
-        for (i = a.length - 1; i >= 0; i--) {
-            int temp = a[0];
-            a[0] = a[i];
-            a[i] = temp;
-            adjustCheap(a, 0, i - 1);// 将a中前i-1个记录重新调整为大顶堆
-        }
-
-    }
-    /**
-     * 构建大顶堆
-     */
-    private static void adjustCheap(int[] a, int i, int len) {
-        int temp, j;
-        temp = a[i];
-        for (j = i * 2; j < len; j *= 2) {// 沿关键字较大的孩子结点向下筛选
-            if (a[j] < a[j + 1]) ++j;// j为关键字中较大记录的下标
-            if (temp >= a[j]) break;
-            a[i] = a[j];
-            i = j;
-        }
-        a[i] = temp;
+        data[i] = data[i] + data[j];
+        data[j] = data[i] - data[j];
+        data[i] = data[i] - data[j];
     }
 
+    public static void heapSort(int[] data) {
+        for (int i = 0; i < data.length; i++) {
+            createMaxdHeap(data, data.length - 1 - i);
+            swap(data, 0, data.length - 1 - i);
+            System.out.println(Arrays.toString(data)+"SSSS");
+        }
+        System.out.println(Arrays.toString(data)+"SSS1");
+    }
 
+    public static void createMaxdHeap(int[] data, int lastIndex) {
+        for (int i = (lastIndex - 1) / 2; i >= 0; i--) {
+            // 保存当前正在判断的节点
+            int k = i;
+            // 若当前节点的子节点存在
+            while (2 * k + 1 <= lastIndex) {
+                // biggerIndex总是记录较大节点的值,先赋值为当前判断节点的左子节点
+                int biggerIndex = 2 * k + 1;
+                if (biggerIndex < lastIndex) {
+                    // 若右子节点存在，否则此时biggerIndex应该等于 lastIndex
+                    if (data[biggerIndex] < data[biggerIndex + 1]) {
+                        // 若右子节点值比左子节点值大，则biggerIndex记录的是右子节点的值
+                        biggerIndex++;
+                    }
+                }
+                if (data[k] < data[biggerIndex]) {
+                    // 若当前节点值比子节点最大值小，则交换2者得值，交换后将biggerIndex值赋值给k
+                    swap(data, k, biggerIndex);
+                    k = biggerIndex;
+                } else {
+                    break;
+                }
+            }
+        }
+    }
+
+    ;
 }
-
-
-复杂度分析
-
-堆排序的运行时间主要耗费在初始构建堆和在重建堆时反复筛选上。在构建对的过程中，因为我们是完全二叉树从最下层最右边的非终端节点开始构建，将它与其孩子进行比较和若有必要的互换，对每个非终端节点来说，其实最多进行两次比较和互换操作，因此整个构建堆的时间复杂度为O(n)。 
-在正式排序时，第i次取堆顶记录重建堆需要用O(logi)的时间（完全二叉树的某个节点到根节点的距离为这里写图片描述），并且需要取n-1次堆顶记录，因此，重建堆的时间复杂度为O(nlogn)。 
-所以总体来说，堆排序的时间复杂度为O(nlogn)，由于堆排序对原始记录的状态并不敏感，因此它无论是最好、最坏和平均时间复杂度均为O(nlogn)。这在性能上显然要远远好过于冒泡、简单选择、直接插入的时间复杂度了。 
-空间复杂度上，它只有一个用来交换的暂存单元，也非常的不错。不过由于记录的比较与交换是跳跃式进行的，因此堆排序也是一种不稳定的排序方法。 
-另外，由于出事构建堆所需要的比较次数比较多，因此，他并不适合待排序序列个数较少的情况。
