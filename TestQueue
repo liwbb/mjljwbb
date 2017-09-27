@@ -16,15 +16,6 @@ import static org.apache.commons.lang.CharEncoding.isSupported;
 public class testBase {
     private static Logger logger= LoggerFactory.getLogger(testBase.class);
     public static void main(String[] args) {
-//        String pwd = "123456789a";
-//        String str = Base64Utils.getCodeBASE64(pwd);
-//        System.out.println(checkLongTime(pwd));
-//        System.out.println(new String(str));
-//        System.out.println(SystemService.entryptPassword(pwd));
-////        String pwdNew="654321";
-////        System.out.println(Base64.decodeBase64(pwdNew));
-////        System.out.println(Base64.encodeBase64("cXdlcjEyMzQ="));
-//        System.out.println(System.currentTimeMillis());
         //输出数组
         int[] a = new int[]{1,4,2,4,6};
         logger.info(Arrays.toString(a));
